@@ -23,5 +23,5 @@ workflows:
   scale:
     jobs:
       - echo:
-          size: 61
+          size: 21
           resource-class: large
