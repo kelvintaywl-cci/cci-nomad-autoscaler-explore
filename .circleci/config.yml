@@ -1,0 +1,26 @@
+version: 2.1
+
+executors:
+  d-cimg-base:
+    docker:
+      - image: cimg/base:current
+
+jobs:
+  echo:
+    parameters:
+      size:
+        type: integer
+      resource-class:
+        type: string
+        default: small
+    executor: d-cimg-base
+    parallelism: << parameters.size >>
+    resource_class: << parameters.resource-class >>
+    steps:
+      - run: echo $CIRCLE_BUILD_URL
+
+workflows:
+  scale:
+    jobs:
+      - echo:
+          size: 13
